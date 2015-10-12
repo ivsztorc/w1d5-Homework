@@ -1,20 +1,7 @@
-def menu
-  puts `clear`
-  puts "*** Warehouse Picker App ***"
-  puts "Welcome to the warehouse. What would you like to do?"
-  print "(a) show items in bays and show distance between items, (b) get collection order or (q)uit: "
-  gets.chomp.downcase
-end
+require "pry-byebug"
 
-def show_items
-  print "which bays do you want to check items for?"
-end
 
-def collection_order
-  print "which product do you want to collect?"
-end
-
-array_bay = {
+@array_bay = {
   a10: "rubber band",
   a9: "glow stick",
   a8: "model car",
@@ -47,8 +34,45 @@ array_bay = {
   c10: "leg warmers"
 }
 
+def menu
+  puts `clear`
+  puts "*** Warehouse Picker App ***"
+  puts "Welcome to the warehouse. What would you like to do?"
+  print "(a) show items in bays and show distance between items, (b) get collection order or (q)uit: "
+  gets.chomp.downcase
+end
 
-array_bay.each {|key, value| puts "bay: #{key}, product: #{value}" }
+def show_items
+  print "which bays do you want to check items for? between a1-10, b1-10, c1-10"
+  bays = gets.chomp.downcase
+  user_bays = bays.split(",")
+  print user_bays
+  user_bays.each do |one_bays|
+  puts
+     array_bay[user_bays].inspect
+  end
+   
+  # distance=selection.map { |s| @array_bay.index(s) }.max
+    puts " #{distance} steps from the entrance to retrieve all of your items."
+  end
+
+
+#binding.pry
+
+def collection_order
+  puts "which product do you want to collect?" 
+  print "Please identify which items you would like to check, if multiple please seperate with comma"
+  bays = gets.chomp.downcase
+  user_bays = bays.split(",")
+  print user_bays
+end
+
+
+# @array_bay = @bay.map.with_index {|item, index| "#{index}. #{item}"}
+
+
+# array_bay.each {|key, value| puts "bay: #{key}, product: #{value}" }
+
 
 response = menu
 
